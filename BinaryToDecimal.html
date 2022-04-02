@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Binary to decimal converter</title>
+        <meta charset="utf-8"/>	
+        <script>
+            function bToD(){
+                let num = document.getElementById("binary").value;
+                let multiplier = 1;
+                let decimal = 0;
+                for(let i =num.length-1;i>=0;i--){
+                    let temp = parseInt(num.charAt(i));
+                    if(temp==0){
+                        decimal+=0;
+                    }
+                    if(temp==1){
+                        decimal+= temp * multiplier;
+                    }
+                    multiplier*=2;
+                }
+                console.log(decimal);
+                document.getElementById("answer").innerHTML= "the binary number " + num + " is "+ decimal + " in decimal form";
+            }
+            function dToB(){
+                let bin = "";
+                let number = parseInt(document.getElementById("binary").value);
+                while(number>0){
+                    bin = number%2 + bin;
+                    number= Math.floor(number/2);
+                }
+                console.log(bin);
+
+
+            }
+        </script>
+    </head>
+    <body>
+        <h2>Please input a binary number to convert</h2>
+        <p>or if you need to convert something to binary I can do that as well</p>
+        <p>please do not put spaces in between the binary numbers</p>
+        <input type="text" id="binary" placeholder="1000110 or 567">
+        <input type="button" id="convert" name="convert" value="convert" onclick="bToD()">
+        <input type ="button" id="convertToBin" name="convertToBin" value="convertToBin" onclick="dToB()">
+        <p id="answer"> </p>
+        
+    </body>
+</html>

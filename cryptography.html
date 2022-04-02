@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>cryptography</title>
+        <meta charset="utf-8"/>	
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>
+        <script>
+            function encryption(){
+                let password=document.getElementById("encrypt").value;
+                let passphrase = document.getElementById("passphrase").value;
+                if(document.getElementById("encrypt").value==""){
+                    alert("please make sure to fill out password otherwise the hash generated will be a default hash");
+                }
+                let demo1=CryptoJS.AES.encrypt(password,passphrase);
+                let demo2=CryptoJS.HmacSHA1(password,passphrase);
+                let demo3=CryptoJS.HmacSHA224(password,passphrase);
+                let demo4=CryptoJS.HmacSHA256(password,passphrase);
+                let demo6=CryptoJS.HmacSHA3(password,passphrase);
+                let demo7=CryptoJS.HmacSHA512(password,passphrase);
+                let demo8=CryptoJS.SHA256(password,passphrase);
+
+                document.getElementById("answer").innerHTML="AES encryption: " + demo1.toString()+'<br>';
+                document.getElementById("answer").innerHTML+="HmacSHA1 encryption: " + demo2.toString() +'<br>';
+                document.getElementById("answer").innerHTML+="HmacSHA224 encryption: " + demo3.toString()+'<br>';
+                document.getElementById("answer").innerHTML+="HmacSHA256 encryption: " + demo4.toString()+'<br>';
+                document.getElementById("answer").innerHTML+="HmacSHA3 encryption: " + demo2.toString() +'<br>';
+                document.getElementById("answer").innerHTML+="HmacSHA512 encryption: " + demo3.toString()+'<br>';
+                document.getElementById("answer").innerHTML+="SHA256 encryption: " + demo4.toString()+'<br>';
+
+
+
+            }
+        </script> 
+    </head>
+        <body>
+            <h3>please input the plain text</h3>
+            <input type="text" id="encrypt" placeholder="put in your password">
+            <h4>please input passphrase</h4>
+            <input type="text" id="passphrase" placeholder="put in your passphrase">
+            <input type="button" id="toEncrypt" name="toEncrypt" value="toEncrypt" onclick="encryption()">
+
+            <p id="answer"></p>
+
+        </body>
+</html>
